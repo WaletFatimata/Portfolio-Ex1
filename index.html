@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fatimata Walet Mohamed Ali | Software Engineer & Digital Communication</title>
+  <meta name="description" content="Portfolio of Fatimata Walet Mohamed Ali — Front-End Developer, Digital Communication Manager & IT Manager based in Bamako, Mali. Specialized in digital marketing, web development and social impact." />
+  <meta name="keywords" content="Fatimata Walet, Software Engineer, Digital Communication, Digital Marketing, IT Manager, Mali, Bamako, Front-End Developer, React, Flutter" />
+  <meta property="og:title" content="Fatimata Walet Mohamed Ali | Software Engineer & Digital Communication" />
+  <meta property="og:description" content="Professional portfolio — Front-End Developer, Digital Communication & IT Manager in Mali." />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://fatimata-walet.github.io/en/" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- QRCode library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --ink:       #0d0d0d;
+      --ivory:     #f5f0e8;
+      --sand:      #e8ddc8;
+      --terracotta:#c4602a;
+      --gold:      #b8963e;
+      --sage:      #4a6741;
+      --mist:      #8a9ba8;
+      --white:     #ffffff;
+      --ff-display: 'Cormorant Garamond', serif;
+      --ff-body:    'DM Sans', sans-serif;
+      --ff-mono:    'Space Mono', monospace;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff-body); background: var(--ivory); color: var(--ink); overflow-x: hidden; cursor: none; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    .cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity .3s; }
+    .cursor-dot { width: 6px; height: 6px; background: var(--terracotta); }
+    .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--terracotta); transition: width .3s var(--ease-out-expo), height .3s var(--ease-out-expo), background .3s; }
+    .cursor-ring.hovered { width: 56px; height: 56px; background: rgba(196,96,42,.08); }
+
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1000; opacity: .5; }
+
+    .lang-switch { position: fixed; top: 1.5rem; right: 2rem; z-index: 900; font-family: var(--ff-mono); font-size: .7rem; letter-spacing: .1em; }
+    .lang-switch a { padding: .4rem .8rem; border: 1px solid var(--ink); background: var(--ivory); transition: all .3s; }
+    .lang-switch a.active { background: var(--ink); color: var(--ivory); }
+    .lang-switch a:hover:not(.active) { background: var(--sand); }
+
+    nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 800; padding: 1.4rem 2.5rem; display: flex; align-items: center; justify-content: space-between; transition: background .4s, box-shadow .4s; }
+    nav.scrolled { background: rgba(245,240,232,.94); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--sand); }
+    .nav-logo { font-family: var(--ff-display); font-size: 1.4rem; font-weight: 300; letter-spacing: .04em; }
+    .nav-logo span { color: var(--terracotta); }
+    .nav-links { display: flex; gap: 2.2rem; }
+    .nav-links a { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; position: relative; padding-bottom: 3px; }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--terracotta); transition: width .4s var(--ease-out-expo); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 850; }
+    .hamburger span { width: 26px; height: 1.5px; background: var(--ink); transition: all .4s; display: block; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu { position: fixed; inset: 0; background: var(--ink); z-index: 840; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 2.5rem; opacity: 0; pointer-events: none; transition: opacity .5s; }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu a { font-family: var(--ff-display); font-size: 3rem; color: var(--ivory); font-weight: 300; }
+
+    #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 0 6vw; gap: 4rem; position: relative; overflow: hidden; }
+    .hero-bg-circle { position: absolute; right: -10vw; top: 50%; transform: translateY(-50%); width: 55vw; height: 55vw; max-width: 720px; max-height: 720px; border-radius: 50%; background: radial-gradient(circle at 40% 40%, var(--sand), var(--ivory)); z-index: 0; animation: breathe 8s ease-in-out infinite; }
+    @keyframes breathe { 0%,100%{transform:translateY(-50%) scale(1)} 50%{transform:translateY(-50%) scale(1.04)} }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-tag { font-family: var(--ff-mono); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--terracotta); display: flex; align-items: center; gap: .8rem; margin-bottom: 1.8rem; }
+    .hero-tag::before { content: ''; width: 40px; height: 1px; background: var(--terracotta); }
+    .hero-name { font-family: var(--ff-display); font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 1rem; }
+    .hero-name em { font-style: italic; color: var(--terracotta); }
+    .hero-sub { font-size: 1rem; color: #555; line-height: 1.7; max-width: 480px; margin-bottom: 2.5rem; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { padding: .9rem 2.2rem; background: var(--ink); color: var(--ivory); font-family: var(--ff-mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; border: none; cursor: pointer; position: relative; overflow: hidden; transition: color .4s; display: inline-block; }
+    .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--terracotta); transform: translateX(-101%); transition: transform .4s var(--ease-out-expo); }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; }
+    .btn-outline { padding: .9rem 2.2rem; background: transparent; color: var(--ink); font-family: var(--ff-mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; border: 1px solid var(--ink); cursor: pointer; transition: background .3s, color .3s; display: inline-block; }
+    .btn-outline:hover { background: var(--ink); color: var(--ivory); }
+    .hero-visual { position: relative; z-index: 2; display: flex; justify-content: flex-end; }
+    .hero-photo-wrap { width: min(380px, 45vw); aspect-ratio: 3/4; position: relative; }
+    .hero-photo-wrap::before { content: ''; position: absolute; inset: -12px 12px 12px -12px; border: 1px solid var(--gold); z-index: 0; }
+    .hero-photo-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--sand) 0%, #d4c8a8 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: var(--ff-display); font-size: 1.2rem; color: var(--ink); position: relative; z-index: 1; gap: .5rem; }
+    .hero-photo-placeholder svg { width: 64px; opacity: .5; }
+    .hero-photo-placeholder small { font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .1em; opacity: .6; text-align: center; }
+    .hero-stats { position: absolute; bottom: -2rem; left: -3rem; z-index: 3; display: flex; gap: 1.5rem; }
+    .stat-pill { background: var(--white); border: 1px solid var(--sand); padding: .8rem 1.2rem; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,.07); }
+    .stat-pill strong { display: block; font-family: var(--ff-display); font-size: 1.8rem; font-weight: 300; color: var(--terracotta); }
+    .stat-pill span { font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--mist); }
+    .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .5rem; font-family: var(--ff-mono); font-size: .6rem; letter-spacing: .15em; color: var(--mist); animation: fadeInUp 1s 1.5s both; }
+    .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--mist), transparent); animation: scrollDown 2s ease-in-out infinite; }
+    @keyframes scrollDown { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+    section { padding: 7rem 6vw; }
+    .section-header { margin-bottom: 4.5rem; }
+    .section-tag { font-family: var(--ff-mono); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--terracotta); display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; }
+    .section-tag::before { content: ''; width: 30px; height: 1px; background: var(--terracotta); }
+    .section-title { font-family: var(--ff-display); font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; }
+    .section-title em { font-style: italic; color: var(--terracotta); }
+
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .about-text p { color: #444; line-height: 1.8; margin-bottom: 1.2rem; font-size: .96rem; }
+    .about-values { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 2rem; }
+    .value-tag { padding: .4rem 1rem; border: 1px solid var(--sand); font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; transition: all .3s; }
+    .value-tag:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--white); }
+    .about-langs h3 { font-family: var(--ff-display); font-size: 1.5rem; font-weight: 300; margin-bottom: 1.5rem; }
+    .lang-bar { margin-bottom: 1.2rem; }
+    .lang-bar-header { display: flex; justify-content: space-between; margin-bottom: .4rem; font-size: .82rem; }
+    .lang-bar-track { height: 3px; background: var(--sand); border-radius: 2px; }
+    .lang-bar-fill { height: 100%; background: var(--terracotta); border-radius: 2px; width: 0; transition: width 1.2s var(--ease-out-expo); }
+
+    #expertise { background: var(--ink); color: var(--ivory); }
+    #expertise .section-tag { color: var(--gold); }
+    #expertise .section-tag::before { background: var(--gold); }
+    #expertise .section-title em { color: var(--gold); }
+    .expertise-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: rgba(255,255,255,.1); }
+    .expertise-card { background: var(--ink); padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: background .4s; }
+    .expertise-card::before { content: ''; position: absolute; inset: 0; background: var(--terracotta); opacity: 0; transition: opacity .4s; }
+    .expertise-card:hover::before { opacity: 1; }
+    .expertise-card > * { position: relative; z-index: 1; }
+    .card-number { font-family: var(--ff-display); font-size: 4rem; font-weight: 300; color: rgba(255,255,255,.08); position: absolute; top: 1rem; right: 1.2rem; line-height: 1; z-index: 0; }
+    .card-icon { font-size: 2rem; margin-bottom: 1.5rem; }
+    .card-title { font-family: var(--ff-display); font-size: 1.4rem; font-weight: 300; margin-bottom: .8rem; }
+    .card-desc { font-size: .85rem; line-height: 1.7; color: rgba(255,255,255,.65); }
+    .expertise-card:hover .card-desc { color: rgba(255,255,255,.9); }
+
+    #skills { background: var(--ivory); }
+    .skills-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
+    .skill-category h3 { font-family: var(--ff-display); font-size: 1.3rem; font-weight: 300; margin-bottom: 1.5rem; padding-bottom: .8rem; border-bottom: 1px solid var(--sand); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .skill-tag { padding: .5rem 1.1rem; background: var(--white); border: 1px solid var(--sand); font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .08em; transition: all .3s; cursor: default; }
+    .skill-tag:hover { background: var(--ink); color: var(--ivory); border-color: var(--ink); transform: translateY(-2px); }
+
+    #experience { background: var(--sand); }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--gold); }
+    .timeline-item { position: relative; margin-bottom: 3.5rem; padding-left: 2.5rem; }
+    .timeline-item::before { content: ''; position: absolute; left: -2rem; top: .4rem; width: 10px; height: 10px; border-radius: 50%; background: var(--ivory); border: 2px solid var(--terracotta); transform: translateX(calc(-50% + .5px)); }
+    .timeline-item:first-child::before { background: var(--terracotta); }
+    .timeline-period { font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .15em; color: var(--terracotta); margin-bottom: .5rem; }
+    .timeline-title { font-family: var(--ff-display); font-size: 1.3rem; font-weight: 400; margin-bottom: .2rem; }
+    .timeline-org { font-size: .82rem; color: var(--mist); margin-bottom: 1rem; }
+    .timeline-body { font-size: .88rem; color: #555; line-height: 1.8; }
+    .timeline-body ul { list-style: none; }
+    .timeline-body li { padding-left: 1.2rem; position: relative; margin-bottom: .5rem; }
+    .timeline-body li::before { content: '→'; position: absolute; left: 0; color: var(--terracotta); font-size: .75rem; top: 2px; }
+
+    #education { background: var(--white); }
+    .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .edu-card { padding: 2rem; border: 1px solid var(--sand); position: relative; overflow: hidden; transition: border-color .3s, transform .3s; }
+    .edu-card:hover { border-color: var(--terracotta); transform: translateY(-4px); }
+    .edu-year { font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .15em; color: var(--terracotta); margin-bottom: 1rem; }
+    .edu-degree { font-family: var(--ff-display); font-size: 1.2rem; font-weight: 400; margin-bottom: .4rem; }
+    .edu-school { font-size: .82rem; color: var(--mist); }
+
+    #certifications { background: var(--ivory); }
+    .cert-list { display: flex; flex-direction: column; gap: 1rem; }
+    .cert-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--white); border: 1px solid var(--sand); transition: border-color .3s, transform .3s; }
+    .cert-item:hover { border-color: var(--gold); transform: translateX(6px); }
+    .cert-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .cert-name { font-size: .88rem; font-weight: 500; margin-bottom: .1rem; }
+    .cert-platform { font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .1em; color: var(--mist); }
+
+    #cv { background: var(--ink); color: var(--ivory); }
+    .cv-inner { display: flex; gap: 4rem; align-items: center; flex-wrap: wrap; justify-content: center; }
+    .cv-text { max-width: 440px; }
+    .cv-text p { color: rgba(255,255,255,.65); line-height: 1.8; margin-bottom: 2rem; }
+    #qrcode-container { background: var(--white); padding: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    #qrcode { width: 160px; height: 160px; }
+    .qr-label { font-family: var(--ff-mono); font-size: .6rem; letter-spacing: .12em; color: var(--mist); text-align: center; text-transform: uppercase; }
+
+    #contact { background: var(--sand); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+    .contact-info h3 { font-family: var(--ff-display); font-size: 1.5rem; font-weight: 300; margin-bottom: 1.5rem; }
+    .contact-info p { color: #555; line-height: 1.8; margin-bottom: 1.5rem; font-size: .9rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-item { display: flex; align-items: center; gap: 1rem; font-size: .88rem; }
+    .contact-item-icon { width: 36px; height: 36px; background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label { display: block; font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .6rem; color: var(--mist); }
+    .form-group input, .form-group textarea { width: 100%; padding: .9rem 1.1rem; background: var(--white); border: 1px solid transparent; font-family: var(--ff-body); font-size: .9rem; color: var(--ink); outline: none; transition: border-color .3s; }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--terracotta); }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    #form-status { margin-top: 1rem; font-family: var(--ff-mono); font-size: .75rem; letter-spacing: .1em; }
+    #form-status.success { color: var(--sage); }
+    #form-status.error { color: #c0392b; }
+
+    footer { background: var(--ink); color: rgba(255,255,255,.45); padding: 2.5rem 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    footer a { color: rgba(255,255,255,.65); transition: color .3s; }
+    footer a:hover { color: var(--terracotta); }
+    .footer-logo { font-family: var(--ff-display); font-size: 1.2rem; font-weight: 300; color: var(--ivory); }
+    .footer-links { display: flex; gap: 1.5rem; font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
+    .footer-copy { font-size: .72rem; }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s var(--ease-out-expo), transform .8s var(--ease-out-expo); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+
+    #progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: var(--terracotta); z-index: 9998; width: 0; transition: width .1s linear; }
+
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; padding-top: 8rem; text-align: center; }
+      .hero-content { order: 2; }
+      .hero-visual { order: 1; justify-content: center; }
+      .hero-ctas { justify-content: center; }
+      .hero-tag { justify-content: center; }
+      .hero-stats { position: static; margin-top: 2rem; justify-content: center; }
+      .hero-photo-wrap { width: min(280px, 70vw); }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .expertise-grid { grid-template-columns: 1fr; }
+      .skills-container { grid-template-columns: 1fr; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      nav { padding: 1.2rem 1.5rem; }
+      .lang-switch { right: 5rem; }
+      section { padding: 5rem 5vw; }
+    }
+    @media (max-width: 500px) {
+      .hero-name { font-size: 2.4rem; }
+      .hero-stats { flex-direction: column; align-items: center; }
+      .cv-inner { flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="progress-bar"></div>
+
+<div class="lang-switch">
+  <a href="../fr/index.html">FR</a><a href="../en/index.html" class="active">EN</a>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#expertise" onclick="closeMobile()">Expertise</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#education" onclick="closeMobile()">Education</a>
+  <a href="#cv" onclick="closeMobile()">Resume</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Fatimata <span>W.</span></a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#expertise">Expertise</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#cv">Resume</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Bamako, Mali &middot; Available</div>
+    <h1 class="hero-name">
+      Fatimata<br><em>Walet</em><br>Mohamed Ali
+    </h1>
+    <p class="hero-sub">
+      Software Engineer &amp; Digital Communication Manager. I build digital experiences with strong social impact — from code to content, from idea to impact.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary"><span>Get in touch</span></a>
+      <a href="#cv" class="btn-outline">View Resume</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-placeholder">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <small>Replace with<br>your photo</small>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-pill"><strong>5+</strong><span>Years exp.</span></div>
+        <div class="stat-pill"><strong>3</strong><span>Expertises</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <div class="section-tag">01 — Profile</div>
+    <h2 class="section-title">About <em>me</em></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal reveal-delay-1">
+      <p>Junior front-end developer holding a Software Engineering degree from the École Polytechnique d'Agadir (Universiapolis, Morocco), I put my digital skills to work on high social-impact projects.</p>
+      <p>Experienced in web development, digital communication, and community engagement across Mali and Morocco, I master content creation, social media management, data collection and analysis — with ease in multicultural environments.</p>
+      <p>Currently Communication &amp; Database Manager at NGO Sahel Solidaire, I drive the organization's digital identity and secure humanitarian project data for high-level Monitoring &amp; Evaluation reporting.</p>
+      <div class="about-values">
+        <span class="value-tag">Autonomous</span>
+        <span class="value-tag">Adaptable</span>
+        <span class="value-tag">Team Player</span>
+        <span class="value-tag">Available</span>
+        <span class="value-tag">Flexible</span>
+        <span class="value-tag">Social Impact</span>
+      </div>
+    </div>
+    <div class="about-langs reveal reveal-delay-2">
+      <h3>Languages</h3>
+      <div class="lang-bar">
+        <div class="lang-bar-header"><span>Tamasheq</span><span>Native</span></div>
+        <div class="lang-bar-track"><div class="lang-bar-fill" data-width="100"></div></div>
+      </div>
+      <div class="lang-bar">
+        <div class="lang-bar-header"><span>Bambara</span><span>Fluent</span></div>
+        <div class="lang-bar-track"><div class="lang-bar-fill" data-width="92"></div></div>
+      </div>
+      <div class="lang-bar">
+        <div class="lang-bar-header"><span>French</span><span>Advanced</span></div>
+        <div class="lang-bar-track"><div class="lang-bar-fill" data-width="85"></div></div>
+      </div>
+      <div class="lang-bar">
+        <div class="lang-bar-header"><span>English</span><span>Intermediate</span></div>
+        <div class="lang-bar-track"><div class="lang-bar-fill" data-width="60"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-header reveal">
+    <div class="section-tag">02 — Core</div>
+    <h2 class="section-title">My <em>expertise</em></h2>
+  </div>
+  <div class="expertise-grid">
+    <div class="expertise-card reveal">
+      <div class="card-number">01</div>
+      <div class="card-icon">💻</div>
+      <h3 class="card-title">Web &amp; Mobile Development</h3>
+      <p class="card-desc">Junior front-end developer proficient in React, Vue, Angular, Flutter &amp; Drupal. Building modern, responsive interfaces from prototype to production.</p>
+    </div>
+    <div class="expertise-card reveal reveal-delay-1">
+      <div class="card-number">02</div>
+      <div class="card-icon">📡</div>
+      <h3 class="card-title">Digital Communication &amp; Marketing</h3>
+      <p class="card-desc">Content strategy, community management, digital advocacy, media relations, and brand identity management across social platforms.</p>
+    </div>
+    <div class="expertise-card reveal reveal-delay-2">
+      <div class="card-number">03</div>
+      <div class="card-icon">🗄️</div>
+      <h3 class="card-title">IT &amp; Data Management</h3>
+      <p class="card-desc">Database administration, Monitoring &amp; Evaluation, humanitarian project data analysis, photovoltaic system monitoring and IT maintenance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <div class="section-tag">03 — Stack</div>
+    <h2 class="section-title">Technical <em>skills</em></h2>
+  </div>
+  <div class="skills-container">
+    <div class="skill-category reveal">
+      <h3>Frontend &amp; Mobile</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span>
+        <span class="skill-tag">JavaScript</span><span class="skill-tag">React.js</span>
+        <span class="skill-tag">Vue.js</span><span class="skill-tag">Angular</span>
+        <span class="skill-tag">Tailwind CSS</span><span class="skill-tag">Bootstrap</span>
+        <span class="skill-tag">Kotlin</span><span class="skill-tag">FlutterFlow</span>
+      </div>
+    </div>
+    <div class="skill-category reveal reveal-delay-1">
+      <h3>Backend &amp; Databases</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">PHP</span><span class="skill-tag">Symfony</span>
+        <span class="skill-tag">Node.js</span><span class="skill-tag">Java</span>
+        <span class="skill-tag">Python</span><span class="skill-tag">MySQL</span>
+        <span class="skill-tag">SQL Server</span><span class="skill-tag">PHPMyAdmin</span>
+        <span class="skill-tag">Drupal</span>
+      </div>
+    </div>
+    <div class="skill-category reveal reveal-delay-2">
+      <h3>Design &amp; Prototyping</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">UML</span><span class="skill-tag">Merise</span>
+        <span class="skill-tag">Balsamiq</span><span class="skill-tag">Canva</span>
+        <span class="skill-tag">UI/UX Design</span><span class="skill-tag">Figma</span>
+      </div>
+    </div>
+    <div class="skill-category reveal reveal-delay-3">
+      <h3>Community &amp; Tools</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Facebook</span><span class="skill-tag">Instagram</span>
+        <span class="skill-tag">LinkedIn</span><span class="skill-tag">Git</span>
+        <span class="skill-tag">Notion</span><span class="skill-tag">Trello</span>
+        <span class="skill-tag">Slack</span><span class="skill-tag">Kobo</span>
+        <span class="skill-tag">Linux</span><span class="skill-tag">M. Office</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <div class="section-tag">04 — Journey</div>
+    <h2 class="section-title">Professional <em>experience</em></h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-period">January 2025 — Present</div>
+      <h3 class="timeline-title">Communication &amp; Database Manager</h3>
+      <div class="timeline-org">NGO Sahel Solidaire · Bamako, Mali</div>
+      <div class="timeline-body">
+        <ul>
+          <li>Leading digital identity and humanitarian advocacy campaigns</li>
+          <li>Administering and securing project data for high-level M&amp;E reports</li>
+          <li>Coordinating with technical partners and media</li>
+          <li>Overseeing development and maintenance of digital platforms</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-1">
+      <div class="timeline-period">Oct. – Nov. 2024</div>
+      <h3 class="timeline-title">Full Stack Developer Intern</h3>
+      <div class="timeline-org">IsmaCorp · Bamako, Mali</div>
+      <div class="timeline-body">
+        <ul>
+          <li>Building mobile app interfaces with FlutterFlow</li>
+          <li>Web integration with Drupal CMS</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-2">
+      <div class="timeline-period">Aug. – Sep. 2024</div>
+      <h3 class="timeline-title">Operations &amp; Maintenance Intern</h3>
+      <div class="timeline-org">Africa Green Tec · Bamako, Mali</div>
+      <div class="timeline-body">
+        <ul>
+          <li>Real-time monitoring of photovoltaic installations via SteamaCo</li>
+          <li>Production, consumption and performance data analysis</li>
+          <li>Client account management and technical support</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-3">
+      <div class="timeline-period">Mar. – Aug. 2023</div>
+      <h3 class="timeline-title">Final Year Internship – Full Stack</h3>
+      <div class="timeline-org">4Tech · Agadir, Morocco</div>
+      <div class="timeline-body">
+        <ul>
+          <li>Studied SaaS Eveho architecture (Symfony, Nuxt.js, Tailwind, APIs)</li>
+          <li>Complete documentation with Notion</li>
+          <li>Contribution to BARACAR automotive sales platform</li>
+          <li>Feature development for Ultimate Cup</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-period">Jul. – Sep. 2022</div>
+      <h3 class="timeline-title">Frontend Developer Intern</h3>
+      <div class="timeline-org">CodingArt · Agadir, Morocco</div>
+      <div class="timeline-body">
+        <ul>
+          <li>UI/UX wireframing and mockup creation</li>
+          <li>Frontend development with React.js and Tailwind CSS</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-1">
+      <div class="timeline-period">Aug. – Sep. 2021</div>
+      <h3 class="timeline-title">IT Technician Intern</h3>
+      <div class="timeline-org">Cosit · Bamako, Mali</div>
+      <div class="timeline-body">
+        <ul>
+          <li>Developing a commercial management website</li>
+          <li>Digital marketing and QR code creation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header reveal">
+    <div class="section-tag">05 — Education</div>
+    <h2 class="section-title">Academic <em>background</em></h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-year">2020 – 2023</div>
+      <div class="edu-degree">Software Engineering Degree</div>
+      <div class="edu-school">École Polytechnique d'Agadir – Universiapolis, Morocco</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-1">
+      <div class="edu-year">2018 – 2020</div>
+      <div class="edu-degree">Preparatory Program – Software Engineering</div>
+      <div class="edu-school">École Polytechnique d'Agadir – Universiapolis, Morocco</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-2">
+      <div class="edu-year">2018</div>
+      <div class="edu-degree">Baccalaureate</div>
+      <div class="edu-school">Lycée L'Entente – Bamako, Mali</div>
+    </div>
+  </div>
+
+  <div class="section-header reveal" style="margin-top:5rem;">
+    <div class="section-tag">Volunteering</div>
+    <h2 class="section-title">Community <em>engagement</em></h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-year">2022 – 2023</div>
+      <div class="edu-degree">Member – Enactus Universiapolis</div>
+      <div class="edu-school">Social entrepreneurship &amp; sustainable development projects · Agadir, Morocco</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-1">
+      <div class="edu-year">2021 – 2022</div>
+      <div class="edu-degree">Feecra Salon Project – EasyRental</div>
+      <div class="edu-school">Business model, business plan &amp; prototype of a vehicle rental platform</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-2">
+      <div class="edu-year">2020 – 2021</div>
+      <div class="edu-degree">Communication Manager – ASEM</div>
+      <div class="edu-school">Association of Malian Students &amp; Trainees · Agadir, Morocco</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-header reveal">
+    <div class="section-tag">06 — Certifications</div>
+    <h2 class="section-title">Certified <em>training</em></h2>
+  </div>
+  <div class="cert-list">
+    <div class="cert-item reveal"><div class="cert-icon">🎯</div><div><div class="cert-name">Advanced Search Engine Optimization Strategies</div><div class="cert-platform">Coursera · 2022–2023</div></div></div>
+    <div class="cert-item reveal reveal-delay-1"><div class="cert-icon">🌐</div><div><div class="cert-name">Building a Dynamic Web App using PHP &amp; MySQL</div><div class="cert-platform">Coursera · 2022–2023</div></div></div>
+    <div class="cert-item reveal reveal-delay-2"><div class="cert-icon">⚛️</div><div><div class="cert-name">Build a Website using React</div><div class="cert-platform">Coursera · 2022–2023</div></div></div>
+    <div class="cert-item reveal reveal-delay-3"><div class="cert-icon">🔒</div><div><div class="cert-name">Wireshark for Basic Network Security Analysis</div><div class="cert-platform">Coursera · 2021–2022</div></div></div>
+    <div class="cert-item reveal"><div class="cert-icon">📱</div><div><div class="cert-name">Build a Simple App in Android Studio with Java</div><div class="cert-platform">Coursera · 2021–2022</div></div></div>
+    <div class="cert-item reveal reveal-delay-1"><div class="cert-icon">📊</div><div><div class="cert-name">Introduction to Big Data with Spark and Hadoop</div><div class="cert-platform">Coursera · 2021–2022</div></div></div>
+  </div>
+</section>
+
+<!-- CV & QR -->
+<section id="cv">
+  <div class="cv-inner">
+    <div class="cv-text reveal">
+      <div class="section-tag" style="color:var(--gold)">07 — Resume</div>
+      <h2 class="section-title" style="color:var(--ivory)">Download<br>my <em style="color:var(--gold)">Resume</em></h2>
+      <p>Find my complete background in one document. Scan the QR code or download the PDF directly.</p>
+      <a href="../assets/CV_Fatimata_Walet_Mohamed_Ali.pdf" download class="btn-primary" style="display:inline-block;margin-top:.5rem;">
+        <span>⬇ Download Resume (PDF)</span>
+      </a>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div id="qrcode-container">
+        <div id="qrcode"></div>
+        <div class="qr-label">Scan to access resume</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <div class="section-tag">08 — Contact</div>
+    <h2 class="section-title">Let's work <em>together</em></h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>Get in touch</h3>
+      <p>Available for opportunities in web development, digital communication, IT management or social impact projects. Don't hesitate to reach out.</p>
+      <div class="contact-items">
+        <div class="contact-item"><div class="contact-item-icon">📍</div><span>Bamako, Mali</span></div>
+        <div class="contact-item"><div class="contact-item-icon">📱</div><a href="tel:+22376981801">+223 76 98 18 01</a></div>
+        <div class="contact-item"><div class="contact-item-icon">✉️</div><a href="mailto:fatimata.walet@e-polytechnique.ma">fatimata.walet@e-polytechnique.ma</a></div>
+        <div class="contact-item"><div class="contact-item-icon">🔗</div><a href="https://linkedin.com/in/fatimata-walet-mohamed-ali-078727256" target="_blank" rel="noopener">LinkedIn</a></div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <form id="contactForm" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" placeholder="John Smith" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="john@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="Collaboration proposal" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Describe your project or inquiry..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;text-align:center;">
+          <span>Send message</span>
+        </button>
+        <p id="form-status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Fatimata W.</div>
+  <div class="footer-links">
+    <a href="mailto:fatimata.walet@e-polytechnique.ma">Email</a>
+    <a href="https://linkedin.com/in/fatimata-walet-mohamed-ali-078727256" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="../fr/index.html">Français</a>
+  </div>
+  <div class="footer-copy">© 2025 Fatimata Walet Mohamed Ali · All rights reserved</div>
+</footer>
+
+<script>
+const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function animate(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animate);})();
+document.querySelectorAll('a,button,.expertise-card,.skill-tag,.cert-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('hovered'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('hovered'));
+});
+const navbar=document.getElementById('navbar'),progressBar=document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY>60);
+  progressBar.style.width=((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100)+'%';
+});
+function toggleMobile(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open');}
+function closeMobile(){document.getElementById('hamburger').classList.remove('open');document.getElementById('mobileMenu').classList.remove('open');}
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const langObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.lang-bar-fill').forEach(f=>{f.style.width=f.dataset.width+'%';});langObserver.unobserve(e.target);}});},{threshold:0.3});
+document.querySelectorAll('.about-langs').forEach(el=>langObserver.observe(el));
+new QRCode(document.getElementById('qrcode'),{text:window.location.origin+'/assets/CV_Fatimata_Walet_Mohamed_Ali.pdf',width:160,height:160,colorDark:'#0d0d0d',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
+const form=document.getElementById('contactForm'),status=document.getElementById('form-status');
+form.addEventListener('submit',async e=>{
+  e.preventDefault();status.textContent='Sending…';status.className='';
+  try{const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+    if(res.ok){status.textContent='✓ Message sent! I will get back to you soon.';status.className='success';form.reset();}
+    else throw new Error();
+  }catch{status.textContent='✗ Error sending. Please try again or contact me directly by email.';status.className='error';}
+});
+</script>
+</body>
+</html>
